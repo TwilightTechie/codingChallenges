@@ -6,18 +6,23 @@ int main (int argc, char *argv[]) {
 			printf("Usage: ./ccwc <filename>\n");
 			printf("Usage: ./ccwc [-c] <filename>\n");
 			printf("Usage: ./ccwc [-l] <filename>\n");
+			printf("Usage: ./ccwc [-w] <filename>\n");
 			return 1;
 		}
 		
 		int countByte = 0; 
-		int linesOnly = 0;
+		int countLines = 0;
+		int countWords = 0; 
 		char *filename = argv[2];
 		
 		if(strcmp(argv[1], "-c") == 0) {
 			countByte = 1;
 		} 
 		else if (strcmp(argv[1], "-l") == 0) {
-				linesOnly = 1;
+			countLines = 1;
+		}
+		else if (strcmp(argv[1], "-w") == 0) {
+			countWords = 1;		
 		}
 		else {
 			filename = argv[1];
@@ -51,11 +56,13 @@ int main (int argc, char *argv[]) {
 		if (countByte) {
 			printf("Bytes: %d\n", characters);
 		}
-		else if (linesOnly){
+		else if (countLines){
 		printf("Lines: %d\n", line);
 		}
-		else{
+		else if (countWords) {
 		printf("words: %d\n", words);
+		}
+		else{
 		printf("Characters: %d\n", characters);
 		return 0;
 }
